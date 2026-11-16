@@ -145,3 +145,4 @@ body:has(dialog[open]){overflow:hidden}
 @media(max-width:370px){.sidebar nav svg,.metric-icon{display:none}.sidebar nav a{padding:6px}.order-meta{flex-wrap:wrap}.topbar .button{padding-inline:8px;font-size:.76rem}.form-grid label{font-size:.75rem}.dialog-actions .button{font-size:.76rem;padding-inline:8px}.timeline li{font-size:.66rem}}
 .metric[aria-pressed=true]{border-color:#2869db;background:#f4f8ff}
 #order-status{min-height:1.2em;margin-top:8px}
+@media(max-width:430px){.sidebar nav svg{display:none}.sidebar nav a{padding-inline:6px}}
