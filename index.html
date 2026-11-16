@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es-PY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#eef3fb">
+<meta name="description" content="Muestra interactiva de NovaTec para organizar los pedidos y entregas de Lavafácil.">
+<link rel="icon" type="image/png" href="marca.png">
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+<title>Lavafácil | Operación de lavandería</title>
+</head>
+<body>
+<a class="skip" href="#main">Ir al contenido</a>
+<svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16m6-16v16"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 5h2m4 0h2m-8 3h2"/></symbol>
+<symbol id="i-track" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 4 4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7m-2-1v10H5V10m5 10v-6h4v6"/></symbol>
+<symbol id="i-hotel" viewBox="0 0 24 24"><path d="M4 20V5h12v15M3 20h18m0 0v-9h-5M8 8h4m-4 4h4m-4 4h4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H4l1.8-3.8A8 8 0 1 1 20 11.5Z"/><path d="M8 10h8m-8 4h6"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M4 8h16v12H4zM3 4h18v4H3zm7 8h4"/></symbol>
+<symbol id="i-wash" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><circle cx="12" cy="13" r="4.5"/><path d="M7 6h1m3 0h1m-4 8 3-1 4 1"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l2 12H3zm4 0V6a3 3 0 0 1 6 0v2"/></symbol>
+</svg>
+<aside class="sidebar">
+  <a class="brand" href="#pedidos"><img src="marca.png" alt="Lavafácil" width="52" height="52"><span><strong>Lavafácil</strong><small>Operación de lavandería</small></span></a>
+  <nav aria-label="Navegación principal">
+    <a href="#pedidos" data-view="pedidos"><svg><use href="#i-board"/></svg><span>Pedidos</span></a>
+    <a href="#entregas" data-view="entregas"><svg><use href="#i-calendar"/></svg><span>Entregas</span></a>
+    <a href="#seguimiento" data-view="seguimiento"><svg><use href="#i-track"/></svg><span>Seguimiento</span></a>
+  </nav>
+  <div class="sidebar-footer"><span class="demo-pill"><i></i> Modo demostración</span><p>Datos ficticios. Los cambios se guardan en este navegador.</p><button class="link-button" type="button" data-action="reset">Reiniciar muestra</button><p class="signature">Creado por <strong>NovaTec</strong></p></div>
+</aside>
+<main id="main">
+  <header class="topbar">
+    <div><p id="today" class="date-line"></p><h1 id="view-title">Panel de pedidos</h1></div>
+    <button type="button" class="button primary" data-action="create"><svg><use href="#i-plus"/></svg> Nuevo pedido</button>
+  </header>
+  <section id="view-pedidos" aria-label="Panel de pedidos">
+    <div class="hero">
+      <div class="hero-content">
+        <h2>Tu lavandería,<br><em>pedido por pedido.</em></h2>
+        <p>Registrá lo que entra y tené a mano cuándo se prometió cada entrega.</p>
+        <button class="button white" type="button" data-action="example">Probar con un pedido <svg><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="hero-art" aria-hidden="true"></div>
+    </div>
+    <div class="metrics" id="metrics" aria-label="Indicadores de pedidos"></div>
+    <section class="board-section" aria-labelledby="board-title">
+      <header class="section-head"><div><h2 id="board-title">Tablero de pedidos</h2><p id="board-count" aria-live="polite"></p></div>
+        <div class="filters">
+          <label class="search"><svg><use href="#i-search"/></svg><input id="search" type="search" placeholder="Buscar cliente o código" aria-label="Buscar cliente o código"></label>
+          <select id="type-filter" aria-label="Filtrar por tipo de cliente"><option value="">Todos los clientes</option><option>Hogar</option><option>Alojamiento</option></select>
+        </div>
+      </header>
+      <div class="board" id="board"></div>
+    </section>
+  </section>
+  <section id="view-entregas" hidden aria-label="Agenda de entregas">
+    <div class="surface"><header class="section-head"><div><h2>Agenda de entregas</h2><p>Pedí atención a tiempo para los pedidos con entrega cercana o vencida.</p></div><select id="date-filter" aria-label="Filtrar entregas"><option value="pending">Pendientes</option><option value="today">Para hoy</option><option value="late">Vencidas</option><option value="delivered">Entregadas</option></select></header><div id="agenda"></div></div>
+  </section>
+  <section id="view-seguimiento" hidden aria-label="Consulta de seguimiento">
+    <div class="tracking surface">
+      <span class="tracking-icon"><svg><use href="#i-track"/></svg></span><h2>Consultá el estado de un pedido</h2>
+      <p>Vista de ejemplo para mostrar qué vería el cliente al consultar con su código.</p>
+      <form id="track-form"><label class="sr-only" for="tracking-code">Código de pedido</label><input id="tracking-code" name="code" placeholder="Ej. LF-1043" required maxlength="22"><button class="button primary" type="submit">Consultar</button></form>
+      <button type="button" class="link-button" data-action="tracking-example">Usar código LF-1043</button>
+      <div id="tracking-result" aria-live="polite"></div>
+    </div>
+  </section>
+  <footer class="mobile-footer">Demo con datos ficticios · NovaTec <button class="link-button" type="button" data-action="reset">Reiniciar muestra</button></footer>
+</main>
+
+<dialog id="order-dialog" aria-labelledby="order-title">
+  <header class="dialog-head"><div><p class="micro" id="order-code"></p><h2 id="order-title"></h2><p id="order-kind"></p></div><button type="button" class="icon-button" data-action="close-order" aria-label="Cerrar pedido"><svg><use href="#i-close"/></svg></button></header>
+  <div id="order-content" class="dialog-content"></div>
+</dialog>
+
+<dialog id="form-dialog" aria-labelledby="form-title">
+  <header class="dialog-head"><div><h2 id="form-title">Nuevo pedido</h2><p id="form-subtitle">Cargá los datos ficticios del pedido para probar el flujo.</p></div><button class="icon-button" type="button" data-action="close-form" aria-label="Cerrar formulario"><svg><use href="#i-close"/></svg></button></header>
+  <form id="order-form" class="dialog-content">
+    <div class="form-grid">
+      <label class="span">Nombre del cliente<input name="client" required maxlength="65" placeholder="Ej. Apartamentos del Sol"></label>
+      <label>Tipo de cliente<select name="type"><option>Hogar</option><option>Alojamiento</option></select></label>
+      <label>Servicio<select name="service"><option>Lavado por kilo</option><option>Sábanas y toallas</option><option>Lavado y planchado</option><option>Edredones y frazadas</option><option>Tintorería</option><option>Otro</option></select></label>
+      <label>Cantidad o detalle<input name="quantity" placeholder="Ej. 12 sábanas y 8 toallas" maxlength="78"></label>
+      <label>Entrega<select name="method"><option>Retiro en local</option><option>Entrega a domicilio</option></select></label>
+      <label>Fecha acordada<input type="date" name="date" min="2020-01-01" max="2099-12-31" required></label>
+      <label>Hora acordada<input type="time" name="time" required></label>
+      <label class="span">Indicaciones para el equipo<textarea name="note" rows="2" maxlength="220" placeholder="Ej. Separar por departamento."></textarea></label>
+    </div>
+    <div class="dialog-actions"><button type="button" class="button secondary" data-action="close-form">Cancelar</button><button type="submit" class="button primary" id="save-order">Registrar pedido <svg><use href="#i-arrow"/></svg></button></div>
+  </form>
+</dialog>
+
+<dialog id="message-dialog" aria-labelledby="message-title">
+  <header class="dialog-head"><div><h2 id="message-title">Mensaje para el cliente</h2><p>Copiá el texto y pegalo en el chat del cliente.</p></div><button class="icon-button" type="button" data-action="close-message" aria-label="Cerrar mensaje"><svg><use href="#i-close"/></svg></button></header>
+  <div class="dialog-content"><label for="message-text" class="sr-only">Texto para WhatsApp</label><textarea id="message-text" readonly rows="5"></textarea><div class="dialog-actions"><button class="button primary" type="button" data-action="copy"><svg><use href="#i-copy"/></svg> Copiar mensaje</button></div><p id="copy-status" role="status"></p></div>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><header class="dialog-head"><div><h2 id="reset-title">Reiniciar muestra</h2><p>Se restaurarán los pedidos de ejemplo en este navegador.</p></div></header><div class="dialog-content dialog-actions"><button class="button secondary" type="button" data-action="close-reset">Cancelar</button><button class="button primary" type="button" data-action="confirm-reset">Reiniciar</button></div></dialog>
+<div id="toast" role="status" class="toast" hidden></div>
+</body>
+</html>
